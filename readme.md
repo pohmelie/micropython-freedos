@@ -8,25 +8,28 @@ This is only «make folder» part of build (see building part below). Port shoul
 1. Build djgpp with awesome [build-djgpp](https://github.com/andrewwutw/build-djgpp).
 2. Copy `djgpp/bin/i586-pc-msdosdjgpp-size` to `djgpp/i586-pc-msdosdjgpp/bin/size` (probably this is unnecessary).
 3. Clone [micropython](https://github.com/micropython/micropython)
-```
-$ git clone https://github.com/micropython/micropython
-```
+    ```
+    $ git clone https://github.com/micropython/micropython
+    ```
+
 4. Clone [micropython-freedos](https://github.com/pohmelie/micropython-freedos) into `micropython` directory.
-```
-$ cd micropython
-$ git clone https://github.com/pohmelie/micropython-freedos
-```
+    ```
+    $ cd micropython
+    $ git clone https://github.com/pohmelie/micropython-freedos
+    ```
+
 5. Build freedos for micropython.
-```
-$ cd freedos
-$ export DJGPP_GCC=/path/to/djgpp/bin/i586-pc-msdosdjgpp-gcc
-$ export CROSS_COMPILE=/path/to/djgpp/i586-pc-msdosdjgpp/bin/
-$ make
-```
+    ```
+    $ cd micropython-freedos
+    $ export DJGPP_GCC=/path/to/djgpp/bin/i586-pc-msdosdjgpp-gcc
+    $ export CROSS_COMPILE=/path/to/djgpp/i586-pc-msdosdjgpp/bin/
+    $ make
+    ```
+
 6. Combine cws dpmi server and micropython binary.*
-```
-$ ./cws-combine.sh
-```
+    ```
+    $ ./cws-combine.sh
+    ```
 
 \* is unnecessary, you can start dpmi server (cwsdpmi.exe) on your own before starting upython.
 
