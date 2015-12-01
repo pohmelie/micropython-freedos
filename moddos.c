@@ -3,8 +3,11 @@
 #include <dos.h>
 #include <bios.h>
 #include <conio.h>
+#include <sys/nearptr.h>
+#include <string.h>
 
 #include "py/runtime.h"
+#include "py/objstr.h"
 
 
 static mp_obj_t mod_dos_inportb(mp_obj_t address) {
@@ -175,6 +178,37 @@ static mp_obj_t mod_dos_delay(mp_obj_t ms) {
 static MP_DEFINE_CONST_FUN_OBJ_1(mod_dos_delay_obj, mod_dos_delay);
 
 
+static mp_obj_t mod_dos_djgpp_near_pointer_enable() {
+
+    return mp_obj_new_int(__djgpp_nearptr_enable());
+
+}
+static MP_DEFINE_CONST_FUN_OBJ_0(mod_dos_djgpp_near_pointer_enable_obj, mod_dos_djgpp_near_pointer_enable);
+
+
+static mp_obj_t mod_dos_djgpp_near_pointer_disable() {
+
+    __djgpp_nearptr_disable();
+    return mp_const_none;
+
+}
+static MP_DEFINE_CONST_FUN_OBJ_0(mod_dos_djgpp_near_pointer_disable_obj, mod_dos_djgpp_near_pointer_disable);
+
+
+static mp_obj_t mod_dos_fmemcpy(mp_obj_t pointer, mp_obj_t bytes) {
+
+    GET_STR_DATA_LEN(bytes, s, l);
+    __djgpp_nearptr_enable();
+
+    memcpy((void *)(mp_obj_get_int(pointer) + __djgpp_conventional_base), s, l);
+
+    __djgpp_nearptr_disable();
+    return mp_const_none;
+
+}
+static MP_DEFINE_CONST_FUN_OBJ_2(mod_dos_fmemcpy_obj, mod_dos_fmemcpy);
+
+
 static const mp_map_elem_t mp_module_dos_globals_table[] = {
     {MP_OBJ_NEW_QSTR(MP_QSTR___name__), MP_OBJ_NEW_QSTR(MP_QSTR_dos)},
 
@@ -199,6 +233,10 @@ static const mp_map_elem_t mp_module_dos_globals_table[] = {
     {MP_OBJ_NEW_QSTR(MP_QSTR_settime), (mp_obj_t)&mod_dos_settime_obj},
 
     {MP_OBJ_NEW_QSTR(MP_QSTR_delay), (mp_obj_t)&mod_dos_delay_obj},
+
+    {MP_OBJ_NEW_QSTR(MP_QSTR_djgpp_near_pointer_enable), (mp_obj_t)&mod_dos_djgpp_near_pointer_enable_obj},
+    {MP_OBJ_NEW_QSTR(MP_QSTR_djgpp_near_pointer_disable), (mp_obj_t)&mod_dos_djgpp_near_pointer_disable_obj},
+    {MP_OBJ_NEW_QSTR(MP_QSTR_fmemcpy), (mp_obj_t)&mod_dos_fmemcpy_obj},
 };
 
 STATIC MP_DEFINE_CONST_DICT(mp_module_dos_globals, mp_module_dos_globals_table);

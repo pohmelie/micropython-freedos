@@ -6,7 +6,7 @@ This is only «make folder» part of build (see building part below). Port shoul
 
 ## Building
 1. Build djgpp with awesome [build-djgpp](https://github.com/andrewwutw/build-djgpp).
-2. Copy `djgpp/bin/i586-pc-msdosdjgpp-size` to `djgpp/i586-pc-msdosdjgpp/bin/size` (probably this is unnecessary).
+2. Copy `djgpp/bin/i586-pc-msdosdjgpp-size` to `djgpp/i586-pc-msdosdjgpp/bin/size` and `djgpp/i586-pc-msdosdjgpp/sys-include/sys/types.h` to `djgpp/i586-pc-msdosdjgpp/sys-include/sys/types.h`.
 3. Clone [micropython](https://github.com/micropython/micropython)
     ```
     $ git clone https://github.com/micropython/micropython
@@ -44,7 +44,8 @@ There is `bin` directory, which contains:
 FreeDos version of micropython extended with
 `dos` module, which have some classic dos functions:
 * `inportb`, `inportw`, `outportb`, `outportw` for port io.
-* `mem_get_byte`, `mem_set_byte` for far pointers (e.g. raw video memory usage).
+* `mem_get_byte`, `mem_set_byte` for **slow** far pointers (e.g.raw video memory usage).
+* `fmemcpy(address, bytes)` for **fast** far memory copy.
 * `enable`, `disable` interrupts.
 * `bios_timeofday`, `gettime`, `settime`, `getdate`, `setdate` for some datetime manipulation.
 
