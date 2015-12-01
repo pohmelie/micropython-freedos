@@ -44,7 +44,7 @@ There is `bin` directory, which contains:
 FreeDos version of micropython extended with
 `dos` module, which have some classic dos functions:
 * `inportb`, `inportw`, `outportb`, `outportw` for port io.
-* `mem_get_byte`, `mem_set_byte` for **slow** far pointers (e.g.raw video memory usage).
+* `mem_get_byte`, `mem_set_byte` for **slow** far pointers.
 * `fmemcpy(address, bytes)` for **fast** far memory copy.
 * `enable`, `disable` interrupts.
 * `bios_timeofday`, `gettime`, `settime`, `getdate`, `setdate` for some datetime manipulation.
