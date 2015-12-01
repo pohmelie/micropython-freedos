@@ -31,7 +31,7 @@
     #define MICROPY_EMIT_X64        (1)
 #endif
 #if !defined(MICROPY_EMIT_X86) && defined(__i386__)
-    #define MICROPY_EMIT_X86        (0)
+    #define MICROPY_EMIT_X86        (1)
 #endif
 #if !defined(MICROPY_EMIT_THUMB) && defined(__thumb2__)
     #define MICROPY_EMIT_THUMB      (1)
@@ -126,42 +126,17 @@
 #define MICROPY_EMERGENCY_EXCEPTION_BUF_SIZE  (256)
 
 #ifndef MICROPY_PY_SOCKET
-    #define MICROPY_PY_SOCKET (0)
+    #define MICROPY_PY_SOCKET (1)
 #endif
 
 extern const struct _mp_obj_module_t mp_module_os;
-// extern const struct _mp_obj_module_t mp_module_uselect;
 extern const struct _mp_obj_module_t mp_module_time;
 extern const struct _mp_obj_module_t mp_module_dos;
-// extern const struct _mp_obj_module_t mp_module_termios;
-// extern const struct _mp_obj_module_t mp_module_socket;
-// extern const struct _mp_obj_module_t mp_module_ffi;
-// extern const struct _mp_obj_module_t mp_module_jni;
 
-#if MICROPY_PY_FFI
-#define MICROPY_PY_FFI_DEF { MP_OBJ_NEW_QSTR(MP_QSTR_ffi), (mp_obj_t)&mp_module_ffi },
-#else
-#define MICROPY_PY_FFI_DEF
-#endif
-#if MICROPY_PY_JNI
-#define MICROPY_PY_JNI_DEF { MP_OBJ_NEW_QSTR(MP_QSTR_jni), (mp_obj_t)&mp_module_jni },
-#else
-#define MICROPY_PY_JNI_DEF
-#endif
 #if MICROPY_PY_TIME
-#define MICROPY_PY_TIME_DEF { MP_OBJ_NEW_QSTR(MP_QSTR_utime), (mp_obj_t)&mp_module_time },
+    #define MICROPY_PY_TIME_DEF { MP_OBJ_NEW_QSTR(MP_QSTR_utime), (mp_obj_t)&mp_module_time },
 #else
-#define MICROPY_PY_TIME_DEF
-#endif
-#if MICROPY_PY_TERMIOS
-#define MICROPY_PY_TERMIOS_DEF { MP_OBJ_NEW_QSTR(MP_QSTR_termios), (mp_obj_t)&mp_module_termios },
-#else
-#define MICROPY_PY_TERMIOS_DEF
-#endif
-#if MICROPY_PY_SOCKET
-#define MICROPY_PY_SOCKET_DEF { MP_OBJ_NEW_QSTR(MP_QSTR_usocket), (mp_obj_t)&mp_module_socket },
-#else
-#define MICROPY_PY_SOCKET_DEF
+    #define MICROPY_PY_TIME_DEF
 #endif
 
 #define MICROPY_PY_DOS_DEF { MP_OBJ_NEW_QSTR(MP_QSTR_dos), (mp_obj_t)&mp_module_dos },
@@ -232,8 +207,6 @@ extern const struct _mp_obj_fun_builtin_t mp_builtin_open_obj;
     void *mmap_region_head; \
 
 // We need to provide a declaration/definition of alloca()
-// #define MICROPY_NO_ALLOCA (1)
-#define __FreeBSD__ (5)
 
 #ifdef __FreeBSD__
 #include <stdlib.h>
