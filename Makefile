@@ -27,7 +27,11 @@ else
 COPT = -Os #-DNDEBUG
 endif
 
-CC = $(DJGPP_GCC)
+ifdef DJGPP
+CC = $(DJGPP)/bin/i586-pc-msdosdjgpp-gcc
+CROSS_COMPILE = $(DJGPP)/i586-pc-msdosdjgpp/bin/
+endif
+
 LDFLAGS_ARCH = -Wl,-Map=$@.map,--cref
 LDFLAGS = $(LDFLAGS_MOD) $(LDFLAGS_ARCH) -lm $(LDFLAGS_EXTRA)
 
@@ -54,8 +58,10 @@ CFLAGS_MOD += -DMICROPY_PY_TERMIOS=1
 SRC_MOD += modtermios.c
 endif
 
+ifdef DJGPP
 SRC_MOD += moddos.c
-CFLAGS_MOD += -DMICROPY_NLR_SETJMP -Dtgamma=gamma -DMICROPY_EMIT_X86=0 -DMICROPY_PY_SOCKET=0
+CFLAGS_MOD += -DMICROPY_NLR_SETJMP -Dtgamma=gamma -DMICROPY_EMIT_X86=0 -DMICROPY_PY_SOCKET=0 -DMICROPY_PY_BUILTINS_MINMAX_DEFAULT_KEYWORD
+endif
 
 # source files
 SRC_C = \

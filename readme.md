@@ -21,9 +21,7 @@ This is only «make folder» part of build (see building part below). Port shoul
 5. Build freedos for micropython.
     ```
     $ cd micropython-freedos
-    $ export DJGPP_GCC=/path/to/djgpp/bin/i586-pc-msdosdjgpp-gcc
-    $ export CROSS_COMPILE=/path/to/djgpp/i586-pc-msdosdjgpp/bin/
-    $ make
+    $ DJGPP=/path/to/djgpp make
     ```
 
 6. Combine cws dpmi server and micropython binary.*
