@@ -2,41 +2,18 @@
 
 Fun time of python on embedded freedos boards is come!
 
-This is only «make folder» part of build (see building part below). Port should be built with djgpp and based on work with dpmi server.
+This is only «some» files of build (see building part below). Port should be built with djgpp and based on work with dpmi server.
 
 ## Building
-1. Build djgpp with awesome [build-djgpp](https://github.com/andrewwutw/build-djgpp).
-2. Copy `djgpp/bin/i586-pc-msdosdjgpp-size` to `djgpp/i586-pc-msdosdjgpp/bin/size` and `djgpp/i586-pc-msdosdjgpp/sys-include/sys/types.h` to `djgpp/i586-pc-msdosdjgpp/sys-include/sys/types.h`.
-3. Clone [micropython](https://github.com/micropython/micropython)
+1. Clone [micropython](https://github.com/micropython/micropython).
+2. Clone [micropython-freedos](https://github.com/pohmelie/micropython-freedos).
+3. Move micropython-freedos files into micropython/unix directory overwriting.
+4. Build freedos for micropython.
     ```
-    $ git clone https://github.com/micropython/micropython
-    ```
-
-4. Clone [micropython-freedos](https://github.com/pohmelie/micropython-freedos) into `micropython` directory.
-    ```
-    $ cd micropython
-    $ git clone https://github.com/pohmelie/micropython-freedos
+    $ ./build_freedos.sh
     ```
 
-5. Build freedos for micropython.
-    ```
-    $ cd micropython-freedos
-    $ DJGPP=/path/to/djgpp make
-    ```
-
-6. Combine cws dpmi server and micropython binary.*
-    ```
-    $ ./cws-combine.sh
-    ```
-
-\* is unnecessary, you can start dpmi server (cwsdpmi.exe) on your own before starting upython.
-
-## Using prebuilt micropython
-There is `bin` directory, which contains:
-* `cwsdpmi.exe` — standalone dpmi server
-* `micropython.exe` — micropython without dpmi server
-* `upython.exe` — dpmi server + micropython in one binary.
-* `cwsparam.exe` — customization of dpmi server. `cwsparam.exe [filename]` (you can customize bundled `upython.exe`).
+If you want to step by step build, read `build_freedos.sh` source, it's pretty simple.
 
 ## Dos module
 FreeDos version of micropython extended with
