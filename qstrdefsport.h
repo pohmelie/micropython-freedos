@@ -26,28 +26,9 @@
 
 // qstrs specific to this port
 
-Q(Test)
+#include "qstrdefsport_freedos.h"
 
-Q(dos)
-Q(inportb)
-Q(inportw)
-Q(outportb)
-Q(outportw)
-Q(mem_get_byte)
-Q(mem_set_byte)
-Q(bios_timeofday)
-Q(enable)
-Q(disable)
-Q(kbhit)
-Q(getch)
-Q(getdate)
-Q(setdate)
-Q(gettime)
-Q(settime)
-Q(delay)
-Q(djgpp_near_pointer_enable)
-Q(djgpp_near_pointer_disable)
-Q(fmemcpy)
+Q(Test)
 
 Q(fileno)
 Q(makefile)
@@ -55,7 +36,7 @@ Q(makefile)
 Q(FileIO)
 Q(flush)
 
-Q(_os)
+Q(uos)
 Q(stat)
 #if MICROPY_PY_OS_STATVFS
 Q(statvfs)
@@ -64,6 +45,8 @@ Q(system)
 Q(unlink)
 Q(getenv)
 Q(mkdir)
+Q(ilistdir)
+Q(errno)
 
 Q(uselect)
 Q(poll)
@@ -98,6 +81,7 @@ Q(sleep_us)
 Q(ticks_ms)
 Q(ticks_us)
 Q(ticks_diff)
+Q(strftime)
 
 Q(socket)
 Q(sockaddr)

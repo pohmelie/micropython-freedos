@@ -3,7 +3,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2015 Damien P. George
+ * Copyright (c) 2013, 2014 Damien P. George
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,19 +23,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-#include <unistd.h>
 
-#ifndef CHAR_CTRL_C
-#define CHAR_CTRL_C (3)
-#endif
+// qstrs specific to this port
 
-void mp_hal_set_interrupt_char(char c);
-
-void mp_hal_stdio_mode_raw(void);
-void mp_hal_stdio_mode_orig(void);
-
-static inline void mp_hal_delay_ms(mp_uint_t ms) { usleep((ms) * 1000); }
-
-#define RAISE_ERRNO(err_flag, error_val) \
-    { if (err_flag == -1) \
-        { nlr_raise(mp_obj_new_exception_arg1(&mp_type_OSError, MP_OBJ_NEW_SMALL_INT(error_val))); } }
+Q(dos)
+Q(inportb)
+Q(inportw)
+Q(outportb)
+Q(outportw)
+Q(mem_get_byte)
+Q(mem_set_byte)
+Q(bios_timeofday)
+Q(enable)
+Q(disable)
+Q(kbhit)
+Q(getch)
+Q(getdate)
+Q(setdate)
+Q(gettime)
+Q(settime)
+Q(delay)
+Q(djgpp_near_pointer_enable)
+Q(djgpp_near_pointer_disable)
+Q(fmemcpy)
