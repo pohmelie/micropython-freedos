@@ -9,6 +9,7 @@ This is only «some» files of build (see building part below). Port should be b
 2. Clone [micropython-freedos](https://github.com/pohmelie/micropython-freedos).
 3. Move micropython-freedos files into micropython/unix directory overwriting.
 4. Build freedos for micropython.
+
     ```
     $ ./build_freedos.sh
     ```
