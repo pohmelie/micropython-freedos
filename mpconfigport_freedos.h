@@ -37,6 +37,12 @@
 // djgpp dirent struct does not have d_ino field
 #undef _DIRENT_HAVE_D_INO
 
+// djgpp errno.h have no ENOTSUP
+#include <errno.h>
+#ifndef ENOTSUP
+#define ENOTSUP 88
+#endif
+
 extern const struct _mp_obj_module_t mp_module_dos;
 
 #undef MICROPY_PORT_BUILTIN_MODULES
@@ -48,7 +54,7 @@ extern const struct _mp_obj_module_t mp_module_dos;
     MICROPY_PY_JNI_DEF \
     MICROPY_PY_TIME_DEF \
     MICROPY_PY_SOCKET_DEF \
-    { MP_ROM_QSTR(MP_QSTR_machine), MP_ROM_PTR(&mp_module_machine) }, \
+    { MP_ROM_QSTR(MP_QSTR_umachine), MP_ROM_PTR(&mp_module_machine) }, \
     { MP_ROM_QSTR(MP_QSTR_uos), MP_ROM_PTR(&mp_module_os) }, \
     MICROPY_PY_USELECT_DEF \
     MICROPY_PY_TERMIOS_DEF \

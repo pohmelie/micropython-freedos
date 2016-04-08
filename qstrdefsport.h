@@ -26,12 +26,11 @@
 
 // qstrs specific to this port
 
-#include "qstrdefsport_freedos.h"
-
 Q(Test)
 
 Q(fileno)
 Q(makefile)
+Q(buffering)
 
 Q(FileIO)
 Q(flush)
@@ -47,6 +46,17 @@ Q(getenv)
 Q(mkdir)
 Q(ilistdir)
 Q(errno)
+#if MICROPY_FSUSERMOUNT
+Q(vfs_mount)
+Q(vfs_umount)
+Q(vfs_mkfs)
+#endif
+#if MICROPY_VFS_FAT
+Q(VfsFat)
+#endif
+#if MICROPY_PY_OS_DUPTERM
+Q(dupterm)
+#endif
 
 Q(uselect)
 Q(poll)
@@ -87,6 +97,7 @@ Q(socket)
 Q(sockaddr)
 Q(htons)
 Q(inet_pton)
+Q(inet_ntop)
 Q(gethostbyname)
 Q(getaddrinfo)
 Q(usocket)
@@ -136,3 +147,24 @@ Q(jclass)
 Q(jobject)
 Q(jmethod)
 #endif
+
+Q(dos)
+Q(inportb)
+Q(inportw)
+Q(outportb)
+Q(outportw)
+Q(mem_get_byte)
+Q(mem_set_byte)
+Q(bios_timeofday)
+Q(enable)
+Q(disable)
+Q(kbhit)
+Q(getch)
+Q(getdate)
+Q(setdate)
+Q(gettime)
+Q(settime)
+Q(delay)
+Q(djgpp_near_pointer_enable)
+Q(djgpp_near_pointer_disable)
+Q(fmemcpy)

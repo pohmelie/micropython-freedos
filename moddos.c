@@ -153,7 +153,7 @@ static mp_obj_t mod_dos_gettime() {
 static MP_DEFINE_CONST_FUN_OBJ_0(mod_dos_gettime_obj, mod_dos_gettime);
 
 
-static mp_obj_t mod_dos_settime(mp_uint_t n, const mp_obj_t *args) {
+static mp_obj_t mod_dos_settime(size_t n, const mp_obj_t *args) {
 
     struct time t;
 
