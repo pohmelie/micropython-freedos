@@ -4,6 +4,8 @@ Fun time of python on embedded FreeDOS boards is come!
 
 This is only «some» files of build (see building part at [micropython wiki](https://github.com/micropython/micropython/wiki/Building-micropython-for-FreeDOS)).
 
+Binary releases available at https://github.com/pohmelie/micropython-freedos/releases
+
 ## Building
 1. Follow the [freedos build guide](https://github.com/micropython/micropython/wiki/Building-micropython-for-FreeDOS).
 2. Before building micropython copy this repo files to `micropython/unix` directory overwriting.
