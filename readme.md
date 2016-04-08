@@ -1,31 +1,22 @@
-# FreeDos port of [micropython](https://github.com/micropython/micropython)
+# FreeDOS ad-hoc module for [micropython](https://github.com/micropython/micropython)
 
-Fun time of python on embedded freedos boards is come!
+Fun time of python on embedded FreeDOS boards is come!
 
-This is only «some» files of build (see building part below). Port should be built with djgpp and based on work with dpmi server.
+This is only «some» files of build (see building part at [micropython wiki](https://github.com/micropython/micropython/wiki/Building-micropython-for-FreeDOS)).
 
 ## Building
-1. Clone [micropython](https://github.com/micropython/micropython).
-2. Clone [micropython-freedos](https://github.com/pohmelie/micropython-freedos).
-3. Move micropython-freedos files into micropython/unix directory overwriting.
-4. Build freedos for micropython.
+1. Follow the [freedos build guide](https://github.com/micropython/micropython/wiki/Building-micropython-for-FreeDOS).
+2. Before building micropython copy this repo files to `micropython/unix` directory overwriting.
 
-    ```
-    $ ./build_freedos.sh
-    ```
-
-If you want to step by step build, read `build_freedos.sh` source, it's pretty simple.
-
-## Dos module
-FreeDos version of micropython extended with
-`dos` module, which have some classic dos functions:
+## `dos` module
+Micropython extended with `dos` module, which have some classic DOS functions:
 * `inportb`, `inportw`, `outportb`, `outportw` for port io.
 * `mem_get_byte`, `mem_set_byte` for **slow** far pointers.
 * `fmemcpy(address, bytes)` for **fast** far memory copy.
 * `enable`, `disable` interrupts.
 * `bios_timeofday`, `gettime`, `settime`, `getdate`, `setdate` for some datetime manipulation.
 
-## Extending
+## Next extending
 Dos module (or another) one can be simply extended. Here is some pattern, cause right now there is no developer api explanation on micropython wiki/docs.
 
 1. `#include "py/runtime.h"`, which contains all(?) macros you need for developing.
@@ -35,7 +26,7 @@ Dos module (or another) one can be simply extended. Here is some pattern, cause 
 
     If your function have more than 3 arguments, then use
 
-    `static mp_obj_t mod_modulename_funcname(mp_uint_t n, const mp_obj_t *args)`
+    `static mp_obj_t mod_modulename_funcname(size_t n, const mp_obj_t *args)`
 
 3. «Fill» function body.
 
