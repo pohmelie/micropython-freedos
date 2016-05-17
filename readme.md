@@ -69,14 +69,7 @@ Dos module (or another) one can be simply extended. Here is some pattern, cause 
         .globals = (mp_obj_dict_t*)&mp_module_modulename_globals,
     };
     ```
-8. Add «strings» to «magic» `qstrdefsport.h`.
-
-    ```
-    Q(modulename)
-    Q(funcname)
-    ```
-
-9. Add your module to `Makefile`.
+8. Add your module to `Makefile`.
 
     ```
     SRC_MOD += modulename.c
