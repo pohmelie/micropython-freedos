@@ -51,10 +51,10 @@ Dos module (or another) one can be simply extended. Here is some pattern, cause 
 6. Declare your module «names» structure.
 
     ```
-    static const mp_map_elem_t mp_module_modulename_globals_table[] = {
-        {MP_OBJ_NEW_QSTR(MP_QSTR___name__), MP_OBJ_NEW_QSTR(MP_QSTR_modulename)},
+    static const mp_rom_map_elem_t mp_module_modulename_globals_table[] = {
+        {MP_ROM_QSTR(MP_QSTR___name__), MP_ROM_QSTR(MP_QSTR_modulename)},
 
-        {MP_OBJ_NEW_QSTR(MP_QSTR_funcname), (mp_obj_t)&mod_modulename_funcname_obj},
+        {MP_ROM_QSTR(MP_QSTR_funcname), MP_ROM_PTR(&mod_modulename_funcname_obj)},
     };
     ```
 
@@ -65,7 +65,6 @@ Dos module (or another) one can be simply extended. Here is some pattern, cause 
 
     const mp_obj_module_t mp_module_modulename = {
         .base = { &mp_type_module },
-        .name = MP_QSTR_modulename,
         .globals = (mp_obj_dict_t*)&mp_module_modulename_globals,
     };
     ```
@@ -73,4 +72,16 @@ Dos module (or another) one can be simply extended. Here is some pattern, cause 
 
     ```
     SRC_MOD += modulename.c
+    ```
+
+9. Add your module to `mpconfigport_freedos.h`, so it will be builtin.
+
+    ```
+    extern const struct _mp_obj_module_t mp_module_modulename;
+    #define MICROPY_PY_MODULENAME_DEF { MP_ROM_QSTR(MP_QSTR_modulename), MP_ROM_PTR(&mp_module_modulename) },
+
+    #undef MICROPY_PORT_BUILTIN_MODULES
+    #define MICROPY_PORT_BUILTIN_MODULES \
+        ... \
+        MICROPY_PY_MODULENAME_DEF
     ```

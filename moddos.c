@@ -209,40 +209,39 @@ static mp_obj_t mod_dos_fmemcpy(mp_obj_t pointer, mp_obj_t bytes) {
 static MP_DEFINE_CONST_FUN_OBJ_2(mod_dos_fmemcpy_obj, mod_dos_fmemcpy);
 
 
-static const mp_map_elem_t mp_module_dos_globals_table[] = {
-    {MP_OBJ_NEW_QSTR(MP_QSTR___name__), MP_OBJ_NEW_QSTR(MP_QSTR_dos)},
+static const mp_rom_map_elem_t mp_module_dos_globals_table[] = {
+    {MP_ROM_QSTR(MP_QSTR___name__), MP_ROM_QSTR(MP_QSTR_dos)},
 
-    {MP_OBJ_NEW_QSTR(MP_QSTR_inportb), (mp_obj_t)&mod_dos_inportb_obj},
-    {MP_OBJ_NEW_QSTR(MP_QSTR_inportw), (mp_obj_t)&mod_dos_inportw_obj},
-    {MP_OBJ_NEW_QSTR(MP_QSTR_outportb), (mp_obj_t)&mod_dos_outportb_obj},
-    {MP_OBJ_NEW_QSTR(MP_QSTR_outportw), (mp_obj_t)&mod_dos_outportw_obj},
+    {MP_ROM_QSTR(MP_QSTR_inportb), MP_ROM_PTR(&mod_dos_inportb_obj)},
+    {MP_ROM_QSTR(MP_QSTR_inportw), MP_ROM_PTR(&mod_dos_inportw_obj)},
+    {MP_ROM_QSTR(MP_QSTR_outportb), MP_ROM_PTR(&mod_dos_outportb_obj)},
+    {MP_ROM_QSTR(MP_QSTR_outportw), MP_ROM_PTR(&mod_dos_outportw_obj)},
 
-    {MP_OBJ_NEW_QSTR(MP_QSTR_mem_get_byte), (mp_obj_t)&mod_dos_mem_get_byte_obj},
-    {MP_OBJ_NEW_QSTR(MP_QSTR_mem_set_byte), (mp_obj_t)&mod_dos_mem_set_byte_obj},
+    {MP_ROM_QSTR(MP_QSTR_mem_get_byte), MP_ROM_PTR(&mod_dos_mem_get_byte_obj)},
+    {MP_ROM_QSTR(MP_QSTR_mem_set_byte), MP_ROM_PTR(&mod_dos_mem_set_byte_obj)},
 
-    {MP_OBJ_NEW_QSTR(MP_QSTR_enable), (mp_obj_t)&mod_dos_enable_obj},
-    {MP_OBJ_NEW_QSTR(MP_QSTR_disable), (mp_obj_t)&mod_dos_disable_obj},
+    {MP_ROM_QSTR(MP_QSTR_enable), MP_ROM_PTR(&mod_dos_enable_obj)},
+    {MP_ROM_QSTR(MP_QSTR_disable), MP_ROM_PTR(&mod_dos_disable_obj)},
 
-    {MP_OBJ_NEW_QSTR(MP_QSTR_bios_timeofday), (mp_obj_t)&mod_dos_bios_timeofday_obj},
-    {MP_OBJ_NEW_QSTR(MP_QSTR_kbhit), (mp_obj_t)&mod_dos_kbhit_obj},
-    {MP_OBJ_NEW_QSTR(MP_QSTR_getch), (mp_obj_t)&mod_dos_getch_obj},
+    {MP_ROM_QSTR(MP_QSTR_bios_timeofday), MP_ROM_PTR(&mod_dos_bios_timeofday_obj)},
+    {MP_ROM_QSTR(MP_QSTR_kbhit), MP_ROM_PTR(&mod_dos_kbhit_obj)},
+    {MP_ROM_QSTR(MP_QSTR_getch), MP_ROM_PTR(&mod_dos_getch_obj)},
 
-    {MP_OBJ_NEW_QSTR(MP_QSTR_getdate), (mp_obj_t)&mod_dos_getdate_obj},
-    {MP_OBJ_NEW_QSTR(MP_QSTR_setdate), (mp_obj_t)&mod_dos_setdate_obj},
-    {MP_OBJ_NEW_QSTR(MP_QSTR_gettime), (mp_obj_t)&mod_dos_gettime_obj},
-    {MP_OBJ_NEW_QSTR(MP_QSTR_settime), (mp_obj_t)&mod_dos_settime_obj},
+    {MP_ROM_QSTR(MP_QSTR_getdate), MP_ROM_PTR(&mod_dos_getdate_obj)},
+    {MP_ROM_QSTR(MP_QSTR_setdate), MP_ROM_PTR(&mod_dos_setdate_obj)},
+    {MP_ROM_QSTR(MP_QSTR_gettime), MP_ROM_PTR(&mod_dos_gettime_obj)},
+    {MP_ROM_QSTR(MP_QSTR_settime), MP_ROM_PTR(&mod_dos_settime_obj)},
 
-    {MP_OBJ_NEW_QSTR(MP_QSTR_delay), (mp_obj_t)&mod_dos_delay_obj},
+    {MP_ROM_QSTR(MP_QSTR_delay), MP_ROM_PTR(&mod_dos_delay_obj)},
 
-    {MP_OBJ_NEW_QSTR(MP_QSTR_djgpp_near_pointer_enable), (mp_obj_t)&mod_dos_djgpp_near_pointer_enable_obj},
-    {MP_OBJ_NEW_QSTR(MP_QSTR_djgpp_near_pointer_disable), (mp_obj_t)&mod_dos_djgpp_near_pointer_disable_obj},
-    {MP_OBJ_NEW_QSTR(MP_QSTR_fmemcpy), (mp_obj_t)&mod_dos_fmemcpy_obj},
+    {MP_ROM_QSTR(MP_QSTR_djgpp_near_pointer_enable), MP_ROM_PTR(&mod_dos_djgpp_near_pointer_enable_obj)},
+    {MP_ROM_QSTR(MP_QSTR_djgpp_near_pointer_disable), MP_ROM_PTR(&mod_dos_djgpp_near_pointer_disable_obj)},
+    {MP_ROM_QSTR(MP_QSTR_fmemcpy), MP_ROM_PTR(&mod_dos_fmemcpy_obj)},
 };
 
 STATIC MP_DEFINE_CONST_DICT(mp_module_dos_globals, mp_module_dos_globals_table);
 
 const mp_obj_module_t mp_module_dos = {
     .base = { &mp_type_module },
-    .name = MP_QSTR_dos,
     .globals = (mp_obj_dict_t*)&mp_module_dos_globals,
 };
